@@ -6,10 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-import pages.BaseTest;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.CategorySelectionPage;
+import pages.*;
 
 import java.time.Duration;
 import static org.testng.AssertJUnit.assertEquals;
@@ -19,6 +16,7 @@ public class LoginTest extends BaseTest {
     HomePage homePage = new HomePage();
     LoginPage loginPage = new LoginPage();
     CategorySelectionPage categorySelectionPage = new CategorySelectionPage();
+    FilterSelectionPage filterSelectionPage = new FilterSelectionPage();
 
     @Test
     public void loginTest() throws InterruptedException {
@@ -47,25 +45,13 @@ public class LoginTest extends BaseTest {
         categorySelectionPage.selectMont();
         Thread.sleep(2000);
 
-
-        // "5-6 Yaş" filtresine kaydır ve tıkla
-        WebElement fiveSixYas = driver.findElement(By.xpath("//span[contains(text(),'5-6 Yaş')]"));
-        js.executeScript("arguments[0].scrollIntoView(true);", fiveSixYas); // Elemanı görünür hale getir
-        fiveSixYas.click();
+        filterSelectionPage.selectFiveSix();
         Thread.sleep(4000);
-        WebElement sixYas = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//body/div[@id='root']/div[@class='page-wrapper']/div[@class='product-list-container']/div[@class='product-list']/div[@class='container-fluid']/div[@class='product-list__content-area']/div[@class='desktop-filter-area desktop-filter-area--fixed']/div[@class='desktop-filter-area__content']/div[@class='filter']/div[@class='collapsible-filter-container']/div[@class='collapsible-filter-container__body']/div[@class='collapsible-filter-container__content-area collapsible-filter-container__content-area--size-filter']/div[3]/span[1]")));
-        js.executeScript("arguments[0].scrollIntoView(true);", sixYas);
-        sixYas.click();
-
+        filterSelectionPage.selectSix();
         Thread.sleep(4000);
-        WebElement sixSevYas = driver.findElement(By.xpath("//span[contains(text(),'6-7 Yaş')]"));
-        js.executeScript("arguments[0].scrollIntoView(true);", sixSevYas);
-        sixSevYas.click();
+        filterSelectionPage.selectSixSeven();
         Thread.sleep(4000);
-        WebElement bejRenk = driver.findElement(By.xpath("//img[@src='https://img-lcwaikiki.mncdn.com//resource/images/icon/bej.png']"));
-        js.executeScript("arguments[0].scrollIntoView(true);", bejRenk);
-        bejRenk.click();
-
+        filterSelectionPage.selectColor();
         Thread.sleep(4000);
 
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(document.body.scrollHeight, 0)");
