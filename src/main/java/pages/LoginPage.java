@@ -19,9 +19,11 @@ public class LoginPage extends BaseTest{
         WebElement passwordTextBox = driver.findElement(By.xpath("//input[@name='password']"));
         passwordTextBox.sendKeys(password);
     }
-    public void completeLogin(){
-        WebElement passwordTextBox = driver.findElement(By.xpath("//input[@name='password']"));
-        passwordTextBox.sendKeys(password);
+    public void completeLogin() throws InterruptedException {
+        WebElement loginButton = driver.findElement(By.xpath("//button[contains(text(),'Giriş Yap')]"));
+        loginButton.click();
+        Thread.sleep(3000);
+        driver.navigate().to(URL);
     }
 
 }

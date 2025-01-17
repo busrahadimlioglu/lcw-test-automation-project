@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import pages.BaseTest;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.CategorySelectionPage;
 
 import java.time.Duration;
 import static org.testng.AssertJUnit.assertEquals;
@@ -17,6 +18,7 @@ public class LoginTest extends BaseTest {
 
     HomePage homePage = new HomePage();
     LoginPage loginPage = new LoginPage();
+    CategorySelectionPage categorySelectionPage = new CategorySelectionPage();
 
     @Test
     public void loginTest() throws InterruptedException {
@@ -34,20 +36,15 @@ public class LoginTest extends BaseTest {
         loginPage.fillPassword(password);
         Thread.sleep(3000);
         loginPage.completeLogin();
-        Thread.sleep(3000);
+        Thread.sleep(2000);
 
-        driver.navigate().to(URL);
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        //js.executeScript("document.querySelector('.popup-close-button').click();");
+
+        categorySelectionPage.selectKid();
         Thread.sleep(2000);
-        WebElement kidIcon = driver.findElement(By.xpath("//a[normalize-space()='ÇOCUK & BEBEK']"));
-        action.moveToElement(kidIcon).perform();
+        categorySelectionPage.selectGirl();
         Thread.sleep(2000);
-        WebElement girlIcon = driver.findElement(By.xpath("//span[normalize-space()='KIZ ÇOCUK']"));
-        action.moveToElement(girlIcon).perform();
-        Thread.sleep(2000);
-        WebElement montButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[contains(@class,'content-tab')]//a[contains(@class,'')][normalize-space()='Mont ve Kaban']")));
-        montButton.click();
+        categorySelectionPage.selectMont();
         Thread.sleep(2000);
 
 
