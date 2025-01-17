@@ -7,9 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import pages.*;
-
 import java.time.Duration;
-import static org.testng.AssertJUnit.assertEquals;
 
 public class LoginTest extends BaseTest {
 
@@ -18,13 +16,19 @@ public class LoginTest extends BaseTest {
     CategorySelectionPage categorySelectionPage = new CategorySelectionPage();
     FilterSelectionPage filterSelectionPage = new FilterSelectionPage();
     ProductList productList = new ProductList();
+    AddToCart addToCart = new AddToCart();
+    CartPage cartPage = new CartPage();
 
     @Test
     public void loginTest() throws InterruptedException {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebElement rejectCookiesButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("cookieseal-banner-reject")));
+        rejectCookiesButton.click();
+
         homePage.findLogin();
         Actions action = new Actions(driver);
         Thread.sleep(3000);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
         homePage.clickLogin();
         Thread.sleep(3000);
 
@@ -60,49 +64,26 @@ public class LoginTest extends BaseTest {
         productList.sortDropdown();
         productList.mostSales();
         Thread.sleep(3000);
-        productList.selectProduct();
+        //productList.selectProduct();
+        //WebElement fourthProduct = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("body > div:nth-child(7) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(6) > div:nth-child(1) > div:nth-child(2) > div:nth-child(4)")));
+        WebElement fourthProduct = driver.findElement(By.cssSelector("body > div:nth-child(7) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(6) > div:nth-child(1) > div:nth-child(2) > div:nth-child(4)"));
+        fourthProduct.click();
+        //body/div[@id='root']/div[@class='page-wrapper']/div[@class='product-list-container']/div[@class='product-list']/div[@class='container-fluid']/div[@class='product-list__content-area']/div[@class='product-grid']/div[1]
         Thread.sleep(3000);
 
         js.executeScript("document.querySelector('.evam-first-screenControl').style.display='none';");
         Thread.sleep(3000);
 
-        WebElement sizeButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'5-6 Yaş')]")));
-        sizeButton.click();
-        Thread.sleep(4000);
+        addToCart.selectSize();
+        Thread.sleep(3000);
+        addToCart.addCart();
+        Thread.sleep(3000);
+        addToCart.goToCart();
+        Thread.sleep(3000);
 
-        WebElement addToChart = driver.findElement(By.xpath("//button[normalize-space()='SEPETE EKLE']"));
-        addToChart.click();
-        Thread.sleep(4000);
-
-        WebElement goToChart = driver.findElement(By.xpath("//a[contains(@href,'https://www.lcw.com/sepetim')]"));
-        goToChart.click();
-        Thread.sleep(4000);
-
-        WebElement addFavorite = driver.findElement(By.xpath("//i[@class='fa fa-heart-o']"));
-        addFavorite.click();
-
-
-        //WebElement cartProductNameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'cart-product-name')]")));
-        //String actualProductName = cartProductNameElement.getText();
-
-        WebElement cartProductColorElement = driver.findElement(By.xpath("(//span[@class='rd-cart-item-color'])[1]"));
-        String actualProductColor = cartProductColorElement.getText();
-
-        WebElement cartProductQuantityElement = driver.findElement(By.xpath("//input[@value='1']"));
-        String actualProductQuantity = cartProductQuantityElement.getAttribute("value");
-
-
-        //assertEquals("expectedProductName", actualProductName);
-        assertEquals("Renk: Bej", actualProductColor);
-        assertEquals("1", actualProductQuantity);
-
-        WebElement productPriceElement = driver.findElement(By.xpath("//span[@class='rd-cart-item-price mb-15']"));
-        String productPrice = productPriceElement.getText();
-
-        WebElement productChartPriceElement = driver.findElement(By.cssSelector("div[class='price-info-area'] span[class='total-grand-box-amount']"));
-        String productChartPrice = productChartPriceElement.getText();
-        assertEquals(productPrice, productChartPrice);
-
+        cartPage.addToFavorite();
+        cartPage.productDetail();
+        cartPage.productPrice();
         Thread.sleep(4000);
 
         WebElement goToPayment = driver.findElement(By.xpath("//div[@class='col-md-12 pl-20 pr-20']//a[@class='main-button mt-15'][normalize-space()='ÖDEME ADIMINA GEÇ']"));

@@ -23,9 +23,9 @@ public class ProductList extends BaseTest{
         mostSalesButton.click();
     }
 
-    public void selectProduct(){
+    /*public void selectProduct(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
         WebElement fourthProduct = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("body > div:nth-child(7) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(6) > div:nth-child(1) > div:nth-child(2) > div:nth-child(4)")));
         fourthProduct.click();
-    }
+    }*/
 }
