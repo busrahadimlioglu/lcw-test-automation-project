@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import pages.BaseTest;
 import pages.HomePage;
+import pages.LoginPage;
 
 import java.time.Duration;
 import static org.testng.AssertJUnit.assertEquals;
@@ -15,30 +16,26 @@ import static org.testng.AssertJUnit.assertEquals;
 public class LoginTest extends BaseTest {
 
     HomePage homePage = new HomePage();
+    LoginPage loginPage = new LoginPage();
 
     @Test
     public void loginTest() throws InterruptedException {
-        //WebElement loginIcon = driver.findElement(By.id("user_1_"));
         homePage.findLogin();
         Actions action = new Actions(driver);
-        //action.moveToElement(loginIcon).perform();
         Thread.sleep(3000);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
-        WebElement signupButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='cart-action__btn cart-action__btn--bg-blue']")));
-        signupButton.click();
+        homePage.clickLogin();
         Thread.sleep(3000);
-        WebElement emailTextBox = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='emailAndPhone']")));
-        emailTextBox.sendKeys(email);
+
+        loginPage.fillEmail(email);
         Thread.sleep(3000);
-        WebElement continueButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(" //button[@class='login-form__button login-form__button--bg-blue']")));
-        continueButton.click();
+        loginPage.continueLogin();
         Thread.sleep(3000);
-        WebElement passwordTextBox = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='password']")));
-        passwordTextBox.sendKeys(password);
+        loginPage.fillPassword(password);
         Thread.sleep(3000);
-        WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(" //button[contains(text(),'Giriş Yap')]")));
-        loginButton.click();
+        loginPage.completeLogin();
         Thread.sleep(3000);
+
         driver.navigate().to(URL);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         //js.executeScript("document.querySelector('.popup-close-button').click();");
