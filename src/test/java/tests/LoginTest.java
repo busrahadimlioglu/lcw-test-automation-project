@@ -17,6 +17,7 @@ public class LoginTest extends BaseTest {
     LoginPage loginPage = new LoginPage();
     CategorySelectionPage categorySelectionPage = new CategorySelectionPage();
     FilterSelectionPage filterSelectionPage = new FilterSelectionPage();
+    ProductList productList = new ProductList();
 
     @Test
     public void loginTest() throws InterruptedException {
@@ -56,20 +57,15 @@ public class LoginTest extends BaseTest {
 
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(document.body.scrollHeight, 0)");
 
-        WebElement sortByDropdown = driver.findElement(By.xpath("//button[@class='dropdown-button__button']"));
-        js.executeScript("arguments[0].scrollIntoView(true);", sortByDropdown);
-        js.executeScript("arguments[0].click();", sortByDropdown);
-        Thread.sleep(4000);
-
-        WebElement mostSaleButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='En çok satanlar']")));
-        mostSaleButton.click();
-        Thread.sleep(4000);
-
-        WebElement fourtProduct = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("body > div:nth-child(7) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(6) > div:nth-child(1) > div:nth-child(2) > div:nth-child(4)")));
-        fourtProduct.click();
+        productList.sortDropdown();
+        productList.mostSales();
         Thread.sleep(3000);
+        productList.selectProduct();
+        Thread.sleep(3000);
+
         js.executeScript("document.querySelector('.evam-first-screenControl').style.display='none';");
         Thread.sleep(3000);
+
         WebElement sizeButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'5-6 Yaş')]")));
         sizeButton.click();
         Thread.sleep(4000);
