@@ -36,4 +36,13 @@ public class CartPage extends BaseTest{
 
         assertEquals(productPrice, productCartPrice);
     }
+
+    public void goToPayment(){
+        WebElement goToPaymentButton = driver.findElement(By.xpath("//div[@class='col-md-12 pl-20 pr-20']//a[@class='main-button mt-15'][normalize-space()='ÖDEME ADIMINA GEÇ']"));
+        goToPaymentButton.click();
+    }
+    public void goToFavorite(){
+        WebElement goToFavoriteButton = driver.findElement(By.xpath("//a[@href='/favorilerim']"));
+        goToFavoriteButton.click();
+    }
 }

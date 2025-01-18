@@ -64,11 +64,9 @@ public class LoginTest extends BaseTest {
         productList.sortDropdown();
         productList.mostSales();
         Thread.sleep(3000);
-        //productList.selectProduct();
-        //WebElement fourthProduct = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("body > div:nth-child(7) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(6) > div:nth-child(1) > div:nth-child(2) > div:nth-child(4)")));
-        WebElement fourthProduct = driver.findElement(By.cssSelector("body > div:nth-child(7) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(6) > div:nth-child(1) > div:nth-child(2) > div:nth-child(4)"));
-        fourthProduct.click();
-        //body/div[@id='root']/div[@class='page-wrapper']/div[@class='product-list-container']/div[@class='product-list']/div[@class='container-fluid']/div[@class='product-list__content-area']/div[@class='product-grid']/div[1]
+        productList.selectProduct();
+        //WebElement fourthProduct = driver.findElement(By.cssSelector("body > div:nth-child(7) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(6) > div:nth-child(1) > div:nth-child(2) > div:nth-child(4)"));
+        //fourthProduct.click();
         Thread.sleep(3000);
 
         js.executeScript("document.querySelector('.evam-first-screenControl').style.display='none';");
@@ -85,15 +83,9 @@ public class LoginTest extends BaseTest {
         cartPage.productDetail();
         cartPage.productPrice();
         Thread.sleep(4000);
-
-        WebElement goToPayment = driver.findElement(By.xpath("//div[@class='col-md-12 pl-20 pr-20']//a[@class='main-button mt-15'][normalize-space()='ÖDEME ADIMINA GEÇ']"));
-        goToPayment.click();
-
+        cartPage.goToPayment();
         Thread.sleep(4000);
-
-        WebElement goToFavorite = driver.findElement(By.xpath("//a[@href='/favorilerim']"));
-        goToFavorite.click();
-
+        cartPage.goToFavorite();
         Thread.sleep(4000);
 
     }
