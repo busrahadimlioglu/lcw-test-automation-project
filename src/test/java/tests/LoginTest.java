@@ -13,8 +13,8 @@ public class LoginTest extends BaseTest {
 
     HomePage homePage = new HomePage();
     LoginPage loginPage = new LoginPage();
-    CategorySelectionPage categorySelectionPage = new CategorySelectionPage();
-    FilterSelectionPage filterSelectionPage = new FilterSelectionPage();
+    CategorySelection categorySelection = new CategorySelection();
+    FilterSelection filterSelection = new FilterSelection();
     ProductList productList = new ProductList();
     AddToCart addToCart = new AddToCart();
     CartPage cartPage = new CartPage();
@@ -43,20 +43,20 @@ public class LoginTest extends BaseTest {
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
-        categorySelectionPage.selectKid();
+        categorySelection.selectKid();
         Thread.sleep(2000);
-        categorySelectionPage.selectGirl();
+        categorySelection.selectGirl();
         Thread.sleep(2000);
-        categorySelectionPage.selectMont();
+        categorySelection.selectMont();
         Thread.sleep(2000);
 
-        filterSelectionPage.selectFiveSix();
+        filterSelection.selectFiveSix();
         Thread.sleep(4000);
-        filterSelectionPage.selectSix();
+        filterSelection.selectSix();
         Thread.sleep(4000);
-        filterSelectionPage.selectSixSeven();
+        filterSelection.selectSixSeven();
         Thread.sleep(4000);
-        filterSelectionPage.selectColor();
+        filterSelection.selectColor();
         Thread.sleep(4000);
 
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(document.body.scrollHeight, 0)");

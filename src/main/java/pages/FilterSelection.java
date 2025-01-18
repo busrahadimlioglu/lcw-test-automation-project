@@ -8,9 +8,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class FilterSelectionPage extends BaseTest{
+public class FilterSelection extends BaseTest{
 
-    public FilterSelectionPage selectFiveSix(){
+    public FilterSelection selectFiveSix(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         // "5-6 Yaş" filtresine kaydır ve tıkla
         WebElement fiveSix = driver.findElement(By.xpath("//span[contains(text(),'5-6 Yaş')]"));
@@ -18,7 +18,7 @@ public class FilterSelectionPage extends BaseTest{
         fiveSix.click();
         return this;
     }
-    public FilterSelectionPage selectSix(){
+    public FilterSelection selectSix(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         WebElement six = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//body/div[@id='root']/div[@class='page-wrapper']/div[@class='product-list-container']/div[@class='product-list']/div[@class='container-fluid']/div[@class='product-list__content-area']/div[@class='desktop-filter-area desktop-filter-area--fixed']/div[@class='desktop-filter-area__content']/div[@class='filter']/div[@class='collapsible-filter-container']/div[@class='collapsible-filter-container__body']/div[@class='collapsible-filter-container__content-area collapsible-filter-container__content-area--size-filter']/div[3]/span[1]")));
@@ -26,14 +26,14 @@ public class FilterSelectionPage extends BaseTest{
         six.click();
         return this;
     }
-    public FilterSelectionPage selectSixSeven(){
+    public FilterSelection selectSixSeven(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         WebElement sixSeven = driver.findElement(By.xpath("//span[contains(text(),'6-7 Yaş')]"));
         js.executeScript("arguments[0].scrollIntoView(true);", sixSeven);
         sixSeven.click();
         return this;
     }
-    public FilterSelectionPage selectColor(){
+    public FilterSelection selectColor(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         WebElement bejRenk = driver.findElement(By.xpath("//img[@src='https://img-lcwaikiki.mncdn.com//resource/images/icon/bej.png']"));
         js.executeScript("arguments[0].scrollIntoView(true);", bejRenk);

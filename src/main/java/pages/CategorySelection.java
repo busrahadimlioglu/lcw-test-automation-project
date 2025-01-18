@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class CategorySelectionPage extends BaseTest{
+public class CategorySelection extends BaseTest{
     public void selectKid() {
         Actions action = new Actions(driver);
         WebElement kidCategory = driver.findElement(By.xpath("//a[normalize-space()='ÇOCUK & BEBEK']"));
