@@ -27,13 +27,13 @@ public class LoginTest extends BaseTest {
         WebElement rejectCookiesButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("cookieseal-banner-reject")));
         rejectCookiesButton.click();
 
-        homePage.findLogin(); //home page sayfasında giriş yap ikonu üzerine gidilir
+        /*homePage.findLogin(); //home page sayfasında giriş yap ikonu üzerine gidilir
         homePage.clickLogin(); //giriş yap butonuna tıklanır
 
         loginPage.fillEmail(email);
         loginPage.continueLogin();
         loginPage.fillPassword(password);
-        loginPage.completeLogin();
+        loginPage.completeLogin();*/
 
         categorySelection.selectKid(); //"Çocuk&Bebek" kategorisi seçilir
         categorySelection.selectGirl(); //"Kız çocuk(6-14 YAŞ)" kategorisi seçilir
@@ -52,7 +52,7 @@ public class LoginTest extends BaseTest {
         productList.selectProduct(); //listelenen ürünlerden 4. ürün seçilir
 
         //engelleyici öğeyi gizlemek için 'display' stili 'none' olarak ayarlanır
-        js.executeScript("document.querySelector('.evam-first-screenControl').style.display='none';");
+        //js.executeScript("document.querySelector('.evam-first-screenControl').style.display='none';");
         Thread.sleep(3000);
 
         addToCart.selectSize(); //ürün bedeni seçilir

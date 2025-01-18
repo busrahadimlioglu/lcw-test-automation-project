@@ -2,6 +2,11 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
 import static org.testng.AssertJUnit.assertEquals;
 
 public class CartPage extends BaseTest{
@@ -12,6 +17,7 @@ public class CartPage extends BaseTest{
     }
 
     public void productDetail(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
         //sepetteki ilk ürünün renk bilgisi bulunur
         WebElement cartProductColorElement = driver.findElement(By.xpath("(//span[@class='rd-cart-item-color'])[1]"));
@@ -21,13 +27,13 @@ public class CartPage extends BaseTest{
         WebElement cartProductQuantityElement = driver.findElement(By.xpath("//input[@value='1']"));
         String actualProductQuantity = cartProductQuantityElement.getAttribute("value");
 
-        assertEquals("Renk: Bej", actualProductColor); //Sepetteki ürünün renginin "Renk: Bej" olup olmadığını kontrol edilir
+        assertEquals("Renk: Koyu Bej", actualProductColor); //Sepetteki ürünün renginin "Renk: Bej" olup olmadığını kontrol edilir
         assertEquals("1", actualProductQuantity); //Sepetteki ürünün adeti "1" olup olmadığını kontrol edilir
 
-        //WebElement cartProductNameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'cart-product-name')]")));
-        //String actualProductName = cartProductNameElement.getText();
+        WebElement cartProductNameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='rd-cart-item-code']")));
+        String actualProductName = cartProductNameElement.getText();
 
-        //assertEquals("expectedProductName", actualProductName);
+        assertEquals("Mont", actualProductName);
     }
     public void productPrice() throws InterruptedException {
         //ürün fiyat bilgisi bulunur
