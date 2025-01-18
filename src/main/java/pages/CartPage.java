@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
 import static org.testng.AssertJUnit.assertEquals;
 
 public class CartPage extends BaseTest{
@@ -13,36 +12,44 @@ public class CartPage extends BaseTest{
     }
 
     public void productDetail(){
+
+        //sepetteki ilk ürünün renk bilgisi bulunur
         WebElement cartProductColorElement = driver.findElement(By.xpath("(//span[@class='rd-cart-item-color'])[1]"));
         String actualProductColor = cartProductColorElement.getText();
 
+        //sepetteki ürünün adet bilgisi bulunur
         WebElement cartProductQuantityElement = driver.findElement(By.xpath("//input[@value='1']"));
         String actualProductQuantity = cartProductQuantityElement.getAttribute("value");
 
-        assertEquals("Renk: Bej", actualProductColor);
-        assertEquals("1", actualProductQuantity);
+        assertEquals("Renk: Bej", actualProductColor); //Sepetteki ürünün renginin "Renk: Bej" olup olmadığını kontrol edilir
+        assertEquals("1", actualProductQuantity); //Sepetteki ürünün adeti "1" olup olmadığını kontrol edilir
 
         //WebElement cartProductNameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'cart-product-name')]")));
         //String actualProductName = cartProductNameElement.getText();
 
         //assertEquals("expectedProductName", actualProductName);
     }
-    public void productPrice(){
+    public void productPrice() throws InterruptedException {
+        //ürün fiyat bilgisi bulunur
         WebElement productPriceElement = driver.findElement(By.xpath("//span[@class='rd-cart-item-price mb-15']"));
         String productPrice = productPriceElement.getText();
 
+        //ürünün sepette yazan fiyat bilgisi bulunur
         WebElement productCartPriceElement = driver.findElement(By.cssSelector("div[class='price-info-area'] span[class='total-grand-box-amount']"));
         String productCartPrice = productCartPriceElement.getText();
 
-        assertEquals(productPrice, productCartPrice);
+        assertEquals(productPrice, productCartPrice); //sepet tutarı ve ödeme tutarı kontrolü yapılır
+        Thread.sleep(4000);
     }
 
-    public void goToPayment(){
+    public void goToPayment() throws InterruptedException {
         WebElement goToPaymentButton = driver.findElement(By.xpath("//div[@class='col-md-12 pl-20 pr-20']//a[@class='main-button mt-15'][normalize-space()='ÖDEME ADIMINA GEÇ']"));
         goToPaymentButton.click();
+        Thread.sleep(4000);
     }
-    public void goToFavorite(){
+    public void goToFavorite() throws InterruptedException {
         WebElement goToFavoriteButton = driver.findElement(By.xpath("//a[@href='/favorilerim']"));
         goToFavoriteButton.click();
+        Thread.sleep(4000);
     }
 }
