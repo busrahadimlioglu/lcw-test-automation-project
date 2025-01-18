@@ -1,24 +1,21 @@
-# LC Waikiki Selenium Test Automation Project
+# LC Waikiki Selenium Test Otomasyon Projesi
 
-## Project Overview
+## Proje Özeti
 
-This project automates key test cases for the LC Waikiki e-commerce website using Selenium WebDriver with Java. The automation includes scenarios such as filtering products, sorting results, selecting product details, verifying cart information, and handling pop-ups.
+Bu proje, Selenium WebDriver ve Java kullanarak LC Waikiki web sitesinde bir alışveriş senaryosunu otomatikleştirir.
+Proje siteye giriş yapmaktan başlayarak kategori seçimi, filtre seçimi, ürün seçimi, sepete ekleme, sepet doğrulaması ve ürünü favorilere eklemeye kadar olan adımları kapsar.
 
-## Features
+## Özellikler
 
-* Product Filtering: Apply color and category filters.
+* Kullanıcı e-post ve şifre girerek giriş yapar.
+* Anasayfadan kategori ve ürün filtreleri seçilir.
+* Ürün bedeni seçildikten sonra sepete eklenir.
+* Sepetteki ürün adı, rengi, adet bilgisi ve fiyat bilgisinin doğruluğunu kontrol edilir.
+* Ürün favorilere eklenir.
 
-* Sorting: Sort products by criteria such as "Best Sellers".
+## Kullanılan Teknolojiler
 
-* Product Details: Select product size and verify product details.
-
-* Cart Validation: Validate product name, color, and quantity in the cart.
-
-* Pop-Up Handling: Manage and dismiss cookie and promotional pop-ups.
-
-## Technologies Used
-
-* Programming Language: Java
+* Java
 
 * Testing Framework: JUnit / TestNG
 
@@ -28,112 +25,57 @@ This project automates key test cases for the LC Waikiki e-commerce website usin
 
 * Design Pattern: POM (Page Object Model)
 
-* Reporting Tool: Allure Report
+* Allure Report
 
-* Version Control: Git
+* Git
 
-## Prerequisites
+## Gereksinimler
 
-To run this project, ensure you have the following installed:
+Projeyi çalıştırmak için bu yazılımların yüklü olduğundan emin olun: Java, Maven, ChromeDriver, Allure
 
-* Java Development Kit (JDK) (version 8 or higher)
 
-* Maven
+## Kurulum ve Yükleme
 
-* Google Chrome (latest version)
-
-* ChromeDriver (compatible with your Chrome version)
-
-* Allure Commandline (for generating and viewing reports)
-
-## Setup and Installation
-
-*1.* Clone the Repository:
+*1.* Repository:
 
 ```
 git clone https://github.com/busrahadimlioglu/lcw-test-automation-project.git
 cd selenium-lcw-automation
 ```
 
-*2.* Install Dependencies:
-Maven will automatically handle dependencies. To install:
-```
-mvn clean install
-```
+*2.* ChromeDriver Ayarlayın:
 
-*3.* Configure ChromeDriver:
+ChromeDriver uygun sürümünü indirin: https://chromedriver.chromium.org/downloads
 
-Download the appropriate version of ChromeDriver: https://chromedriver.chromium.org/downloads
 
-Set the ``` webdriver.chrome.driver ``` system property in the code or environment.
+*3.* Allure Kurun
 
-*4.* Setup Allure:
+## Testleri Çalıştırma
 
-Install Allure Commandline: Installation Guide
+Projeyi tercih ettiğiniz IDE'de (ör. IntelliJ IDEA ) açın.
 
-Ensure Allure is added to your system's PATH variable.
+JUnit veya TestNG kullanarak senaryoyu çalıştırın.
 
-## How to Run Tests
-
-Open the project in your favorite IDE (e.g., IntelliJ IDEA or Eclipse).
-
-Run the test classes using JUnit or TestNG.
-
-Alternatively, execute all tests using Maven:
+Alternatif olarak, Maven kullanarak çalıştırabilirsiniz:
 ```
 mvn test
 ```
-Generate Allure Report:
+Allure Raporu Oluşturma:
 ```
 allure serve allure-results
 ```
 
-## Test Scenarios
-
-*1.* Filtering Products
-
-Navigate to the LC Waikiki product listing page.
-
-Apply a filter for the color "Beige".
-
-Verify that the filtered products match the selected color.
-
-*2.* Sorting Products
-
-Select the "Best Sellers" option from the sorting dropdown.
-
-Verify that products are displayed in the expected order.
-
-*3.* Product Selection
-
-Click on a product to navigate to the product detail page.
-
-Select a size and add the product to the cart.
-
-*4.* Cart Validation
-
-Verify the product name, color, and quantity in the cart.
-
-Example Assertion:
-```
-assertEquals("Color: Beige", actualProductColor);
-assertEquals("1", actualProductQuantity);
-```
-
-*5.* Pop-Up Handling
-
-Dismiss cookie consent and promotional pop-ups using JavaScript:
-```
-((JavascriptExecutor) driver).executeScript("document.querySelector('.popup-selector').style.display='none';");
-```
-## Folder Structure
-
-```
-selenium-lcw-automation/
-|-- src/main/java
-|   |-- utils/         # Utility classes (e.g., WebDriver setup)
-|-- src/test/java
-|   |-- tests/         # Test classes for each scenario
-|-- pom.xml            # Maven dependencies and build configuration
-|-- allure-results/    # Allure report results
-```
+## Test Senaryosu
+ * https://www.lcw.com/ adresine giderek “GirişYapˮ butonu tıklanır.
+ * E-mail girilir devam butonuna tıklanır.
+ * Şifre girilir “Giriş Yapˮ butonuna tıklanır.
+ * Çocuk&Bebek kategorisi seçilir, "Kız çocuk(6-14 YAŞ)" seçilir, "Mont ve Kaban" alt menüsü seçilir.
+ * Beden filtresinde "5-6", "6" ve "6-7" yaş seçenekleri seçilir.
+   Renk filtresinde "Bej" seçilir.
+ * Sırala comboboxına tıklanır, "En çok satanlar" seçilir. Ürünler yeniden listelenir.
+ * İlk sıradaki 4.ürüne tıklanır. Ürün detayına gidilir. Bir yaş grubu seçilir ve sepete ekle butonuna tıklanır.
+ * Sepetim ekranına gidilir. Sepetim ekranında, ürünün "adı","rengi" ve "adet" alanlarının doğruluğu kontrol edilir.
+   Ürünün tutarı ile "Ödeme adımına geç" alanında yazan tutarın doğtuluğu kontrol edilir.
+ * Ürün kartı üzerinde yer alan kalp simgesi ile ürün favorilere eklenir.
+ * "Ödeme adımına geç" butonuna tıklanır.
+ * "Favorilerim" ikonuna tiklanir. Favoriler ekrani açilir. Seçilen ürün görülür.
