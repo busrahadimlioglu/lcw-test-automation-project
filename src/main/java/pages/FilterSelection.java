@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,7 @@ import java.time.Duration;
 
 public class FilterSelection extends BaseTest{
 
+    @Step("5-6 yaş seçilir")
     public void selectFiveSix() throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         WebElement fiveSix = driver.findElement(By.xpath("//span[contains(text(),'5-6 Yaş')]"));
@@ -18,6 +20,7 @@ public class FilterSelection extends BaseTest{
         fiveSix.click();
         Thread.sleep(4000);
     }
+    @Step("6 yaş seçilir")
     public void selectSix() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -26,6 +29,7 @@ public class FilterSelection extends BaseTest{
         six.click();
         Thread.sleep(4000);
     }
+    @Step("6-7 yaş seçilir")
     public void selectSixSeven() throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         WebElement sixSeven = driver.findElement(By.xpath("//span[contains(text(),'6-7 Yaş')]"));
@@ -33,6 +37,7 @@ public class FilterSelection extends BaseTest{
         sixSeven.click();
         Thread.sleep(4000);
     }
+    @Step("Bej renk seçilir")
     public void selectColor() throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         WebElement bejRenk = driver.findElement(By.xpath("//img[@src='https://img-lcwaikiki.mncdn.com//resource/images/icon/bej.png']"));

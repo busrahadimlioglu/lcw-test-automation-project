@@ -1,21 +1,23 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 import static org.testng.AssertJUnit.assertEquals;
 
 public class CartPage extends BaseTest{
 
+    @Step("Ürün favorilere eklenir")
     public void addToFavorite(){
         WebElement addFavorite = driver.findElement(By.xpath("//i[@class='fa fa-heart-o']"));
         addFavorite.click();
     }
 
+    @Step("Ürün detayları kontrol edilir")
     public void productDetail(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
@@ -35,6 +37,7 @@ public class CartPage extends BaseTest{
 
         assertEquals("Mont", actualProductName);
     }
+    @Step("Ürün fiyatları kontrol edilir")
     public void productPrice() throws InterruptedException {
         //ürün fiyat bilgisi bulunur
         WebElement productPriceElement = driver.findElement(By.xpath("//span[@class='rd-cart-item-price mb-15']"));
@@ -48,11 +51,13 @@ public class CartPage extends BaseTest{
         Thread.sleep(4000);
     }
 
+    @Step("Ödeme yap butonuna tıklanır")
     public void goToPayment() throws InterruptedException {
         WebElement goToPaymentButton = driver.findElement(By.xpath("//div[@class='col-md-12 pl-20 pr-20']//a[@class='main-button mt-15'][normalize-space()='ÖDEME ADIMINA GEÇ']"));
         goToPaymentButton.click();
         Thread.sleep(4000);
     }
+    @Step("Favorilerime gidilir")
     public void goToFavorite() throws InterruptedException {
         WebElement goToFavoriteButton = driver.findElement(By.xpath("//a[@href='/favorilerim']"));
         goToFavoriteButton.click();
